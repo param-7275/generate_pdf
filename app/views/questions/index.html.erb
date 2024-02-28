@@ -1,0 +1,42 @@
+<%= render partial: 'partials/header' %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+<h1>Questions Details</h1>
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Marks</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @question.each do |question| %>
+    <tr>
+      <td><%= question.question %></td>
+      <td><%= question.marks %></td>
+      <td><%=  button_to 'Delete', delete_question_path(question),method: :delete %><br><%= link_to 'Generate PDF', generate_pdf_path(marks: question.marks), method: :get, class: 'btn btn-primary' %>
+     
+      </td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

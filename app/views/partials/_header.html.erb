@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+    </style>
+  </head>
+  <body>
+  <ul>
+
+  <% if session[:user_id] %>
+      <li style="color: white;">
+      Logged in as <strong><%= @user.username %></strong>.
+      <%= link_to 'Logout', user_logout_path(@user), method: :delete %>
+      </li>
+      <li><a class="active" ></a></li>
+      <li><%= link_to 'Home',show_path %></li>
+      <li><%= link_to 'News',news_path %></li>
+      <li><%= link_to 'About',about_path %></li>
+      <li><%= link_to 'Contact Us', contact_path %></li>
+      <li><%= link_to 'Add Question', new_question_path %></li>
+      <li><%= link_to 'Show Question', show_question_path %></li>
+
+    <% else %>
+      <li><a class="active"></a></li>
+      <li><%= link_to 'Home',root_path %></li>
+      <li><%= link_to 'News',news_path %></li>
+      <li><%= link_to 'Contact Us' , contact_path%></li>
+      <li><%= link_to 'About',about_path%></li>
+      <li><%= link_to 'Signup', sign_up_path %></li>
+      <li><%= link_to 'Login', login_path %></li>
+      <li><%= link_to 'Add Question', new_question_path %></li>
+
+
+    <% end %>
+  </ul>
+  
+  </body>
+</html>
+
